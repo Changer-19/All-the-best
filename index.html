@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Luck Shloka!</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            /* Baby Pink Background */
+            background-color: #ffd1dc; 
+            color: #334155; 
+            text-align: center; 
+            padding: 20px; 
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container { 
+            max-width: 600px; 
+            margin: 20px auto; 
+            background: rgba(255, 255, 255, 0.85); 
+            padding: 30px; 
+            border-radius: 25px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+        }
+        /* Sky Blue font for Header */
+        h1 { 
+            color: #87ceeb; 
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+        /* Sky Blue font for Countdown */
+        .countdown { 
+            font-size: 2.2em; 
+            font-weight: bold; 
+            color: #87ceeb; 
+            margin: 15px 0 25px 0; 
+            padding: 15px; 
+            background: #ffffff; 
+            border-radius: 15px;
+            border: 2px solid #87ceeb;
+        }
+        .letter { 
+            text-align: left; 
+            line-height: 1.6; 
+            padding: 20px; 
+            border-left: 5px solid #87ceeb; 
+            background: #fffafa; 
+            border-radius: 0 15px 15px 0; 
+            margin-bottom: 25px; 
+            min-height: 250px; 
+            font-size: 1.1em;
+            color: #555;
+        }
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background-color: #87ceeb;
+            vertical-align: middle;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        /* Sky Blue Button */
+        button { 
+            background-color: #87ceeb; 
+            color: white; 
+            border: none; 
+            padding: 12px 30px; 
+            font-size: 1.1em; 
+            font-weight: bold;
+            border-radius: 50px; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 15px rgba(135, 206, 235, 0.4);
+        }
+        button:hover { 
+            background-color: #a0e0f8; 
+            transform: scale(1.05);
+        }
+        #fun-text { 
+            margin-top: 25px; 
+            font-size: 1.1em;
+            font-style: italic; 
+            /* Sky Blue for the Fun Text too */
+            color: #5fb6d9; 
+            min-height: 50px; 
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>You've Got This, Shloka! 🌟</h1>
+        
+        <div class="countdown" id="timer">Calculating...</div>
+
+        <div class="letter">
+            <span id="typed-text"></span><span class="cursor"></span>
+        </div>
+
+        <button onclick="showFun()">Click for a Smile ✨</button>
+        <div id="fun-text"></div>
+    </div>
+
+    <script>
+        // --- TIMER LOGIC ---
+        const examDate = new Date('2026-02-23T08:30:00+05:30').getTime();
+        const timerElement = document.getElementById('timer');
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = examDate - now;
+
+            if (distance < 0) {
+                timerElement.innerHTML = "Go Shloka! You're crushing it! 🍀";
+                return;
+            }
+
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const h = hours < 10 ? "0" + hours : hours;
+            const m = minutes < 10 ? "0" + minutes : minutes;
+            const s = seconds < 10 ? "0" + seconds : seconds;
+
+            timerElement.innerHTML = h + "h " + m + "m " + s + "s ";
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // --- TYPEWRITER LOGIC ---
+        const letterText = "Dear Shloka,\n\nI know exams can feel a little overwhelming right now, but I also know how incredibly capable you are. You've put in the hard work, and tomorrow is just an opportunity for you to show off what you know.\n\nDon't stress about being absolutely perfect. Just take a deep breath, trust your preparation, and remember that no single piece of paper defines how smart or brilliant you are. Go in there with confidence and take it one question at a time.\n\nI believe in you completely, and I am rooting for you all the way. Go crush it!";
+        
+        let charIndex = 0;
+        const textElement = document.getElementById("typed-text");
+
+        function typeWriter() {
+            if (charIndex < letterText.length) {
+                if (letterText.charAt(charIndex) === '\n') {
+                    textElement.innerHTML += "<br>";
+                } else {
+                    textElement.innerHTML += letterText.charAt(charIndex);
+                }
+                charIndex++;
+                setTimeout(typeWriter, 40); // 40ms per letter
+            }
+        }
+        window.onload = () => setTimeout(typeWriter, 800);
+
+        // --- FUN QUOTES LOGIC ---
+        const funQuotes = [
+            "Why did the student eat his exam? Because the teacher said it was a piece of cake! 🍰",
+            "May your memory be as strong as your Wi-Fi connection today. 📶",
+            "You are smarter than you think, and much more prepared than you realize! 🧠",
+            "Sending you 100% good vibes and 0% panic! 🧘‍♀️",
+            "You're going to rock this test harder than a heavy metal band. 🎸",
+            "Just remember: tomorrow afternoon, the exam will be over and you'll be free! 🌈"
+        ];
+
+        function showFun() {
+            document.getElementById('fun-text').innerText = funQuotes[Math.floor(Math.random() * funQuotes.length)];
+        }
+    </script>
+</body>
+</html>
